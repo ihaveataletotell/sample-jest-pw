@@ -1,0 +1,285 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"eslint:recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"rules": {
+		// слишком сложно поправить, но нужно использовать с нуля
+		"@typescript-eslint/explicit-function-return-type": "error",
+
+		"padded-blocks": "off",
+		"arrow-body-style": "off",
+
+		// deprecated
+		"no-spaced-func": "off",
+
+		// from best-practices.js
+		"curly": ["error", "multi-line"],
+		"default-case": ["error", {"commentPattern": "^no default$"}],
+		"eqeqeq": "off", // ["error", "always", { null: "ignore" }]
+		"max-classes-per-file": ["error", 2], // ["error", 1]
+		"no-extend-native": "off", // "error"
+		"no-fallthrough": ["error", { "commentPattern": "break[\\s\\w]*omitted" }], // "error"
+		"no-multi-str": "off", // "error"
+		"no-return-assign": ["error", "except-parens"], // "always"
+		"radix": ["error", "as-needed"], // "error"
+
+		// from errors.js
+		"no-await-in-loop": "off", // "error"
+		"no-cond-assign": ["error", "except-parens"], // "always"
+
+		// from es6.js
+		"arrow-parens": "off", // ["error", "always"]
+
+		// from imports.js
+		// От импорт плагина нужен только порядок импортов. Остальное лишнее
+		// style.js
+		// вернул комент
+		"eol-last": "off",
+		"linebreak-style": "off",
+		"no-bitwise": "error",
+		"no-plusplus": "off", // "error"
+		"no-underscore-dangle": "off",
+
+		"array-bracket-newline": ["error", "consistent"], // "off"
+		"array-element-newline": ["error", "consistent", {"multiline": true}], // "off"
+		"function-call-argument-newline": ["error", "consistent"], // "off"
+		"func-names": ["error", "as-needed"], // "warn" "always",
+		"func-style": ["error", "expression"], // "error"
+		"jsx-quotes": ["error", "prefer-single"],
+		"max-depth": ["error", 4], // "off"
+		"multiline-comment-style": ["error", "separate-lines"],
+		// test it allows manual multiline
+		"multiline-ternary": ["error", "always-multiline"], // "off"
+		// многострочный тернарный оператор нормально читается
+		"no-nested-ternary": "off", // "error"
+		"no-restricted-syntax": ["error", "WithStatement", "ForInStatement", "LabeledStatement"],
+		"no-tabs": "off",
+		"object-curly-spacing": ["error", "always", {"arraysInObjects": true, "objectsInObjects": false}],
+		"prefer-exponentiation-operator": "error", // "off"
+
+		// from variables.js nothing
+
+		// redefine eslint rules https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+		// неправильно работает для глоабльных ts конструкций
+		"no-undef": "off",
+		"brace-style": "off",
+		"@typescript-eslint/brace-style": ["error", "1tbs", {"allowSingleLine": true}],
+
+		"comma-spacing": "off",
+		"@typescript-eslint/comma-spacing": ["error", {"before": false, "after": true}],
+
+		"func-call-spacing": "off",
+		"@typescript-eslint/func-call-spacing": ["error", "never"],
+
+		"indent": ["error", "tab", {
+			"SwitchCase": 1,
+			"VariableDeclarator": 1,
+			"outerIIFEBody": 1,
+			"FunctionDeclaration": {
+				"parameters": 1,
+				"body": 1
+			},
+			"FunctionExpression": {
+				"parameters": 1,
+				"body": 1
+			},
+			"CallExpression": {
+				"arguments": 1
+			},
+			"ArrayExpression": 1,
+			"ObjectExpression": 1,
+			"ImportDeclaration": 1,
+			"flatTernaryExpressions": true,
+			"ignoreComments": false
+		}], // 2 spaces
+
+		"keyword-spacing": "off",
+		"@typescript-eslint/keyword-spacing": ["error", {
+			"before": true,
+			"after": true,
+			"overrides": {
+				"return": {"after": true},
+				"throw": {"after": true},
+				"case": {"after": true}
+			}
+		}],
+
+		"no-array-constructor": "off",
+		"@typescript-eslint/no-array-constructor": ["error"],
+
+		"no-dupe-class-members": "off",
+		"@typescript-eslint/no-dupe-class-members": ["error"],
+
+		"no-empty-function": "off",
+		"@typescript-eslint/no-empty-function": [
+			"error",
+			{"allow": ["arrowFunctions"]}
+		],
+
+		"no-extra-semi": "off",
+		"@typescript-eslint/no-extra-semi": ["error"],
+
+		"no-shadow": "off",
+		"@typescript-eslint/no-shadow": ["error"],
+
+		"no-unused-expressions": "off",
+		"@typescript-eslint/no-unused-expressions": ["error", {
+			"allowShortCircuit": false,
+			"allowTernary": false,
+			"allowTaggedTemplates": false
+		}],
+
+		"no-unused-vars": "off",
+		// не нужно. Регулируется ts-config ом
+		"@typescript-eslint/no-unused-vars": ["off", {"vars": "all", "args": "after-used", "ignoreRestSiblings": true}],
+
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": ["off", {"enums": true, "typedefs": false}],
+
+		"no-useless-constructor": "off",
+		"@typescript-eslint/no-useless-constructor": ["error"],
+
+		"quotes": "off",
+		"@typescript-eslint/quotes": ["error", "single", {"avoidEscape": true}],
+
+		"no-return-await": "off",
+		"@typescript-eslint/return-await": "error",
+
+		"semi": "off",
+		"@typescript-eslint/semi": ["error"],
+
+		"space-before-function-paren": "off",
+		"@typescript-eslint/space-before-function-paren": ["error", {
+			"anonymous": "always",
+			"named": "never",
+			"asyncArrow": "always"
+		}],
+
+
+		// typescript rules
+		"@typescript-eslint/no-empty-interface": "off",
+		"@typescript-eslint/array-type": ["error"],
+		"@typescript-eslint/ban-types": "off",
+		"@typescript-eslint/class-literal-property-style": ["error", "fields"],
+		"@typescript-eslint/consistent-type-assertions": [
+			"off",
+			{"assertionStyle": "angle-bracket", "objectLiteralTypeAssertions": "allow-as-parameter"}
+		],
+		"@typescript-eslint/consistent-type-definitions": "off",
+		"@typescript-eslint/explicit-member-accessibility": "error",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+
+		"@typescript-eslint/member-ordering": [
+			"error",
+			{
+				"default": {
+					"memberTypes": [
+						"static-field", // = ["public-static-field", "protected-static-field", "private-static-field"]
+						"static-method", // = ["public-static-method", "protected-static-method", "private-static-method"]
+						"instance-field", // = ["public-instance-field", "protected-instance-field", "private-instance-field"]
+						"constructor", // = ["public-constructor", "protected-constructor", "private-constructor"]
+						"instance-method", // = ["public-instance-method", "protected-instance-method", "private-instance-method"]
+						"abstract-field", // = ["public-abstract-field", "protected-abstract-field", "private-abstract-field"]
+						"abstract-method" // = ["public-abstract-method", "protected-abstract-method", "private-abstract-method"]
+					]
+				}
+			}
+		],
+		"@typescript-eslint/method-signature-style": ["error", "method"],
+
+		// Настроил основные моменты - которые вспомнил. Скорее всего надо будет допилить
+		// Для более тонкой настройки https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "default",
+				"format": ["camelCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				// PascalCase for react components, forbid UPPER_CASE
+				"selector": "variable",
+				"format": ["camelCase", "PascalCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "function",
+				"format": ["camelCase"],
+				"leadingUnderscore": "forbid"
+			},
+			{
+				"selector": "class",
+				"format": ["PascalCase"],
+				"leadingUnderscore": "forbid"
+			},
+			{
+				"selector": "memberLike",
+				"format": ["camelCase", "PascalCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "typeLike",
+				"format": ["PascalCase"],
+				"leadingUnderscore": "forbid"
+			},
+			{
+				"selector": "objectLiteralProperty",
+				"format": ["camelCase", "PascalCase"],
+				"leadingUnderscore": "allow"
+			}
+		],
+
+		// Всем понятно, что any эт плохо. Если это используется, на это есть причины
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-unsafe-assignment": "error",
+
+		"@typescript-eslint/no-extra-non-null-assertion": "error",
+		"@typescript-eslint/no-extraneous-class": "off",
+		// неправильно работает
+		"@typescript-eslint/no-invalid-void-type": "off",
+
+		// Namespaces are good
+		"@typescript-eslint/no-namespace": "off",
+		"@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+		"@typescript-eslint/no-non-null-assertion": "off",
+
+		// хочу выполнять код condition && alwaysTrueValue
+		"@typescript-eslint/no-unnecessary-condition": "off",
+		"@typescript-eslint/no-unnecessary-qualifier": "off",
+		"@typescript-eslint/no-unnecessary-type-arguments": "error",
+
+		// Когда можно затипизировать, нужно типизировать хоть как-то
+		"@typescript-eslint/no-unsafe-call": "error",
+		"@typescript-eslint/no-unsafe-member-access": "error",
+		"@typescript-eslint/no-unsafe-return": "error",
+
+		"@typescript-eslint/prefer-as-const": "error",
+		// Хороший оператор
+		"@typescript-eslint/prefer-nullish-coalescing": "error",
+
+		"@typescript-eslint/prefer-optional-chain": "error",
+		"@typescript-eslint/prefer-readonly": "error",
+
+		// good
+		"@typescript-eslint/prefer-reduce-type-parameter": "error",
+
+		"@typescript-eslint/prefer-ts-expect-error": "error",
+		"@typescript-eslint/promise-function-async": ["off", { "checkArrowFunctions": false }],
+		"@typescript-eslint/switch-exhaustiveness-check": "error",
+		"@typescript-eslint/unified-signatures": "error"
+	}
+}
